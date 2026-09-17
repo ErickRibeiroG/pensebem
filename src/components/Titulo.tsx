@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div id='teste'>
+      <div id=''>
         <img src={logo} alt="" className='w-100' />
       </div>
     </>
@@ -12,3 +12,4 @@ function App() {
 }
 
 export default App
+
