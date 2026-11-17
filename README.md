@@ -1,32 +1,44 @@
-# React + TypeScript + Vite
+# Pense Bem Toy Story
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Versão para celular do Pense Bem, o brinquedo eletrônico de perguntas e respostas da Tec Toy,
+com o livro **Pense Bem Disney – Toy Story**. O app reproduz o aparelho (visor, botões coloridos
+A/B/C/D e pontuação) e mostra as perguntas e as páginas da revista de cada programa.
 
-Currently, two official plugins are available:
+O app fica na pasta [`mobile/`](mobile/), feito com Expo (React Native).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Como rodar
 
-## React Compiler
+Precisa do Node 22.13 ou mais novo e do app **Expo Go** no celular.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+cd mobile
+npm install
+npx expo start          # mostra o QR code para abrir no Expo Go
+npx expo start --web    # abre no navegador
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+No Windows, o `mobile/iniciar.cmd` faz o mesmo usando um Node 22 portátil
+(`iniciar.cmd --web` abre no navegador).
+
+## Como jogar
+
+1. Escolha um programa (111 a 115) na revista ou digite o código no aparelho.
+2. Leia a pergunta e responda com o botão da cor certa. O botão **Ver revista** abre as páginas
+   do programa, para as perguntas que dependem de imagem.
+3. Acertando de primeira você ganha 3 pontos, na segunda tentativa 2 e na terceira 1. Errando
+   as três, o jogo passa para a próxima pergunta sem pontos. Ao final aparecem as estrelas e a
+   pontuação.
+
+## Onde fica cada coisa
+
+| Arquivo | O que tem |
+|---|---|
+| `mobile/src/game/jogo.ts` | Programas, gabarito e regras de pontuação |
+| `mobile/src/game/perguntas.ts` | Texto das 150 perguntas e alternativas |
+| `mobile/src/game/revista.ts` | Páginas da revista de cada programa |
+| `mobile/src/components/` | Telas e componentes (aparelho, revista, visualizador) |
+| `mobile/assets/revista/` | Páginas da revista em imagem |
+| `mobile/scripts/converter-revista.py` | Gera as imagens das páginas a partir do PDF |
+
+O PDF da revista não fica no repositório. Para gerar as páginas de novo, coloque o PDF em
+`mobile/` e rode `python scripts/converter-revista.py <arquivo.pdf>` (precisa de `pip install pymupdf`).
