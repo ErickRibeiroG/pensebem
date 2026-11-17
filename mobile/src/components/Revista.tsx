@@ -6,7 +6,9 @@ import { Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native
 import { PONTUACAO_MAXIMA, RESPOSTAS, calcularEstrelas, listaProgramas } from '../game/jogo'
 import type { Jogo } from '../game/jogo'
 import type { Pergunta } from '../game/perguntas'
+import { paginasDoPrograma } from '../game/revista'
 import { contorno, cores, coresBotao, driverNativo, sombraDura } from '../tema'
+import ConsultarRevista from './ConsultarRevista'
 
 const videoPontuacaoBaixa = require('../../assets/videos/woodyRindo.mp4')
 
@@ -27,6 +29,9 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
     // Navegadores só deixam tocar sozinho se estiver no mudo (o vídeo não tem áudio)
     p.muted = true
   })
+  const [revistaAberta, setRevistaAberta] = useState(false)
+  const paginas = paginasDoPrograma(jogo.programa)
+
   // "Vira a página" quando muda a pergunta ou o estado do jogo
   const chavePagina = `${jogo.programa}-${jogo.pergunta}-${jogo.finalizado}`
   const entrada = useRef(new Animated.Value(1)).current
@@ -67,7 +72,12 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
       <Animated.View style={[styles.pagina, animacao]}>
         {jogo.programa === null && <Capa onEscolher={onEscolherPrograma} />}
         {jogo.programa !== null && !jogo.finalizado && (
-          <PaginaPergunta jogo={jogo} pergunta={pergunta} progresso={progresso} />
+          <PaginaPergunta
+            jogo={jogo}
+            pergunta={pergunta}
+            progresso={progresso}
+            onConsultarRevista={paginas.length > 0 ? () => setRevistaAberta(true) : undefined}
+          />
         )}
         {jogo.finalizado && <Resultado jogo={jogo} player={playerPontuacaoBaixa} />}
       </Animated.View>
@@ -76,6 +86,17 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
           invisível durante o jogo só para adiantar o carregamento */}
       {jogo.programa !== null && !jogo.finalizado && (
         <VideoView player={playerPontuacaoBaixa} style={styles.preCarregamento} nativeControls={false} />
+      )}
+
+      {/* key: cada programa abre na primeira página dele */}
+      {jogo.programa !== null && paginas.length > 0 && (
+        <ConsultarRevista
+          key={jogo.programa}
+          visivel={revistaAberta && !jogo.finalizado}
+          programa={jogo.programa}
+          paginas={paginas}
+          onFechar={() => setRevistaAberta(false)}
+        />
       )}
     </View>
   )
@@ -116,10 +137,12 @@ function PaginaPergunta({
   jogo,
   pergunta,
   progresso,
+  onConsultarRevista,
 }: {
   jogo: Jogo
   pergunta: Pergunta | undefined
   progresso: Progresso
+  onConsultarRevista?: () => void
 }) {
   const percentual = progresso.total > 0 ? (progresso.respondidas / progresso.total) * 100 : 0
 
@@ -137,6 +160,16 @@ function PaginaPergunta({
             <View style={[styles.barraCheia, { width: `${percentual}%` }]} />
           </View>
         </View>
+        {onConsultarRevista && (
+          <Pressable
+            onPress={onConsultarRevista}
+            accessibilityRole="button"
+            accessibilityLabel="Consultar a revista"
+            style={({ pressed }) => [styles.botaoRevista, pressed && styles.botaoRevistaPressionado]}
+          >
+            <Text style={styles.textoBotaoRevista}>Revista</Text>
+          </Pressable>
+        )}
       </View>
 
       <Text style={styles.enunciado}>
@@ -356,6 +389,30 @@ const styles = StyleSheet.create({
   progresso: {
     flex: 1,
     gap: 6,
+  },
+  botaoRevista: {
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: cores.tinta,
+    borderRadius: 12,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: cores.branco,
+    ...sombraDura(3),
+  },
+  botaoRevistaPressionado: {
+    backgroundColor: cores.papelLinha,
+    transform: [{ translateX: 2 }, { translateY: 2 }],
+    boxShadow: 'none',
+  },
+  iconeRevista: {
+    fontSize: 18,
+  },
+  textoBotaoRevista: {
+    color: cores.textoPapel,
+    fontSize: 11,
+    fontWeight: '900',
+    textTransform: 'uppercase',
   },
   textoProgresso: {
     color: cores.textoSuave,
