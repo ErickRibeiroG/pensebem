@@ -1,5 +1,7 @@
 export type Resposta = 'A' | 'B' | 'C' | 'D'
 
+export const RESPOSTAS: readonly Resposta[] = ['A', 'B', 'C', 'D']
+
 type Programa = {
   primeiraPergunta: number
   gabarito: readonly Resposta[]
@@ -23,6 +25,13 @@ const programas: Record<string, Programa> = {
   '115': { primeiraPergunta: 121, gabarito: gabarito('BDDBBDABDA' + 'BCCABDDCDC' + 'BBBACADDDC') },
 }
 
+// Lista usada na "capa" da revista
+export const listaProgramas = Object.entries(programas).map(([codigo, p]) => ({
+  codigo,
+  primeira: p.primeiraPergunta,
+  ultima: p.primeiraPergunta + p.gabarito.length - 1,
+}))
+
 export const PONTUACAO_MAXIMA = 30 * 3
 
 export type Feedback = 'nenhum' | 'acerto' | 'erro'
@@ -35,6 +44,12 @@ export type Jogo = {
   indice: number
   finalizado: boolean
   feedback: Feedback
+  // Respostas erradas já tentadas na pergunta atual (riscadas na revista)
+  eliminadas: Resposta[]
+  // Quantas perguntas foram acertadas na 1ª tentativa
+  acertosPrimeira: number
+  // Contador de jogadas: muda a cada resposta, dispara animações e vibração
+  jogada: number
 }
 
 export const jogoInicial: Jogo = {
@@ -45,6 +60,9 @@ export const jogoInicial: Jogo = {
   indice: 0,
   finalizado: false,
   feedback: 'nenhum',
+  eliminadas: [],
+  acertosPrimeira: 0,
+  jogada: 0,
 }
 
 export function iniciarPrograma(codigo: string): Jogo | null {
@@ -75,23 +93,24 @@ export function responder(jogo: Jogo, resposta: Resposta): Jogo {
     indice,
     finalizado: indice === gabarito.length,
     feedback: acertou ? 'acerto' : 'erro',
+    eliminadas: avancou ? [] : [...jogo.eliminadas, resposta],
+    acertosPrimeira: jogo.acertosPrimeira + (acertou && jogo.tentativa === 1 ? 1 : 0),
+    jogada: jogo.jogada + 1,
   }
 }
 
-export function obterTelas(jogo: Jogo) {
-  if (jogo.finalizado) {
-    return {
-      tela1: 'FIM',
-      tela2: `Pontos: ${jogo.pontuacao} de ${PONTUACAO_MAXIMA}`,
-      feedback: jogo.feedback,
-    }
-  }
-  if (jogo.programa === null) {
-    return { tela1: '*', tela2: 'Digite o programa', feedback: jogo.feedback }
-  }
-  return {
-    tela1: `${jogo.programa}->${jogo.pergunta}:`,
-    tela2: `Tentativa ${jogo.tentativa} de 3`,
-    feedback: jogo.feedback,
-  }
+// Posição dentro do programa (ex.: pergunta 5 de 30)
+export function obterProgresso(jogo: Jogo) {
+  if (jogo.programa === null) return { atual: 0, total: 0, respondidas: 0 }
+  const total = programas[jogo.programa].gabarito.length
+  return { atual: Math.min(jogo.indice + 1, total), total, respondidas: jogo.indice }
+}
+
+// Estrelas do resumo final (0 a 3)
+export function calcularEstrelas(pontuacao: number) {
+  const percentual = pontuacao / PONTUACAO_MAXIMA
+  if (percentual >= 0.8) return 3
+  if (percentual >= 0.5) return 2
+  if (percentual >= 0.2) return 1
+  return 0
 }
