@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# revista original escaneada (o app usa só as imagens em assets/revista)
+*.pdf
