@@ -42,3 +42,6 @@ yarn-error.*
 
 # revista original escaneada (o app usa só as imagens em assets/revista)
 *.pdf
+
+# configuração local do Claude Code
+.claude/
