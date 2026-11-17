@@ -14,7 +14,7 @@ const gabarito = (letras: string) => letras.split('') as Resposta[]
 // Cores do Pense Bem: A = vermelho, B = amarelo, C = azul, D = verde
 const programas: Record<string, Programa> = {
   // Programa 1 - questões 1 a 30
-  '111': { primeiraPergunta: 1, gabarito: gabarito('DCBBCDDBAA' + 'DCBDADACAC' + 'CBDABABDAC') },
+  '111': { primeiraPergunta: 1, gabarito: gabarito('DCBBCDDCAA' + 'DCBDADACAC' + 'CBDABABDAC') },
   // Programa 2 - questões 31 a 60
   '112': { primeiraPergunta: 31, gabarito: gabarito('ACCBDDDBDA' + 'BABDAAABCA' + 'ABADBBBCDC') },
   // Programa 3 - questões 61 a 90

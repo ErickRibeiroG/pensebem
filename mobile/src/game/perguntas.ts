@@ -36,19 +36,19 @@ const perguntas: Record<number, Pergunta> = {
   },
   8: {
     enunciado: 'Nos Estados Unidos, a voz de Woody foi dublada por ...',
-    alternativas: { A: 'Tom Jobim', B: 'Tom Story', C: 'Tom Hanks', D: 'Tom Cavalcante' },
+    alternativas: { A: 'Tom Jobim', B: 'Tom Hanks', C: 'Tom Story', D: 'Tom Cavalcante' },
   },
   9: {
     enunciado: 'Esse ator já ganhou dois Oscars, um deles pelo filme ...',
-    alternativas: { A: 'Forrest Gump', B: 'Velocidade Máxima', C: 'O Quatrilho', D: 'E.T.' },
+    alternativas: { A: 'Forrest Gump', B: 'O Quatrilho', C: 'Velocidade Máxima', D: 'E.T.' },
   },
   10: {
     enunciado: 'Para fazer os 77 minutos de Toy Story, foram gastos mais de ... horas nos computadores.',
-    alternativas: { A: '800 mil', B: '24', C: '100', D: '57' },
+    alternativas: { A: '800 mil', B: '100', C: '24', D: '57' },
   },
   11: {
     enunciado: 'Todas essas horas de computador produziram ...',
-    alternativas: { A: '230 pizzas de mussarela', B: '65 quilômetros por hora', C: '100 toneladas de chiclete', D: '600 milhões de bytes' },
+    alternativas: { A: '230 pizzas de mussarela', B: '100 toneladas de chiclete', C: '65 quilômetros por hora', D: '600 milhões de bytes' },
   },
   12: {
     enunciado: 'O Rei Leão custou 45 milhões de dólares; Toy Story custou 30 milhões. Isso mostra que o uso de computadores ... os custos de produção.',
@@ -72,23 +72,23 @@ const perguntas: Record<number, Pergunta> = {
   },
   17: {
     enunciado: 'Encontre no caça-palavras o nome do equipamento de Woody.',
-    alternativas: { A: 'cinturão', B: 'cadeira', C: 'tesoura', D: 'areia' },
+    alternativas: { A: 'cinturão', B: 'cadeira', C: 'arpão', D: 'serrote' },
   },
   18: {
     enunciado: 'Encontre no caça-palavras o nome do equipamento de Woody.',
-    alternativas: { A: 'skate', B: 'capacete', C: 'serrote', D: 'asa delta' },
+    alternativas: { A: 'skate', B: 'tesoura', C: 'esporas', D: 'asa delta' },
   },
   19: {
     enunciado: 'Encontre no caça-palavras o nome do equipamento de Woody.',
-    alternativas: { A: 'estrela', B: 'chapéu', C: 'peixe', D: 'saiote' },
+    alternativas: { A: 'estrela', B: 'areia', C: 'peixe', D: 'nuvem' },
   },
   20: {
     enunciado: 'Encontre no caça-palavras o nome do equipamento de Woody.',
-    alternativas: { A: 'gorro', B: 'cinturão', C: 'areia', D: 'capacete' },
+    alternativas: { A: 'gorro', B: 'capacete', C: 'chapéu', D: 'saiote' },
   },
   21: {
     enunciado: 'O nome do menino desta história é ...',
-    alternativas: { A: 'Billy', B: 'Andy', C: 'Ted', D: 'Ricky' },
+    alternativas: { A: 'Ted', B: 'Billy', C: 'Andy', D: 'Ricky' },
   },
   22: {
     enunciado: 'O que você calça no pé é ...',
@@ -104,7 +104,7 @@ const perguntas: Record<number, Pergunta> = {
   },
   25: {
     enunciado: 'As galinhas botam ...',
-    alternativas: { A: 'penas', B: 'coxinhas', C: 'ovos', D: 'estrelas' },
+    alternativas: { A: 'penas', B: 'ovos', C: 'coxinhas', D: 'estrelas' },
   },
   26: {
     enunciado: 'A gente respira pelo ...',
@@ -128,11 +128,11 @@ const perguntas: Record<number, Pergunta> = {
   },
   31: {
     enunciado: 'No primeiro desenho, o boneco está com o braço ...',
-    alternativas: { A: 'abaixado', B: 'verde', C: 'quente', D: 'encolhido' },
+    alternativas: { A: 'abaixado', B: 'quente', C: 'verde', D: 'encolhido' },
   },
   32: {
     enunciado: 'No segundo desenho, o braço do boneco está um pouco mais para ...',
-    alternativas: { A: 'o sul', B: 'cima', C: 'baixo', D: 'lá embaixo' },
+    alternativas: { A: 'o sul', B: 'cá', C: 'cima', D: 'baixo' },
   },
   33: {
     enunciado: 'Cada desenho é um pouquinho ... do desenho anterior.',
@@ -140,10 +140,10 @@ const perguntas: Record<number, Pergunta> = {
   },
   34: {
     enunciado: 'O braço do boneco vai ... cada vez mais.',
-    alternativas: { A: 'falando', B: 'dormindo', C: 'subindo', D: 'pesando' },
+    alternativas: { A: 'falando', B: 'subindo', C: 'dormindo', D: 'pesando' },
   },
   35: {
-    enunciado: 'Uma ... especial filma todos os desenhos.',
+    enunciado: 'Depois, uma ... especial filma todos os desenhos.',
     alternativas: { A: 'sanfona', B: 'geladeira', C: 'guitarra', D: 'câmera' },
   },
   36: {
@@ -152,7 +152,7 @@ const perguntas: Record<number, Pergunta> = {
   },
   37: {
     enunciado: 'Primeiro, o roteirista escreve o ... do filme.',
-    alternativas: { A: 'cenário', B: 'colorido', C: 'som', D: 'roteiro' },
+    alternativas: { A: 'cenário', B: 'som', C: 'colorido', D: 'roteiro' },
   },
   38: {
     enunciado: 'O desenhista faz o storyboard, que é o desenho do roteiro dividido em ...',
@@ -160,7 +160,7 @@ const perguntas: Record<number, Pergunta> = {
   },
   39: {
     enunciado: 'A figura mostra o diretor e o roteirista diante do ...',
-    alternativas: { A: 'portão', B: 'shopping', C: 'quadro negro', D: 'storyboard' },
+    alternativas: { A: 'portão', B: 'quadro negro', C: 'shopping', D: 'storyboard' },
   },
   40: {
     enunciado: 'Agora, o desenhista faz o ..., definindo os movimentos de câmera, cortes e posição dos personagens.',
@@ -175,32 +175,32 @@ const perguntas: Record<number, Pergunta> = {
     alternativas: { A: 'atrás', B: 'em cima', C: 'depois', D: 'na frente' },
   },
   43: {
+    enunciado: 'Os animadores criam os movimentos dos personagens, fazendo 24 desenhos para cada ... de filme.',
+    alternativas: { A: 'minuto', B: 'segundo', C: 'dia', D: 'hora' },
+  },
+  44: {
     enunciado: 'Os desenhos são feitos em acetato transparente e ... com tinta guache por trás.',
     alternativas: { A: 'divididos', B: 'enrolados', C: 'rasgados', D: 'coloridos' },
   },
-  44: {
-    enunciado: 'Depois de prontos, os desenhos são ... com uma câmera especial.',
-    alternativas: { A: 'filmados', B: 'lavados', C: 'polidos', D: 'marcados' },
-  },
   45: {
-    enunciado: 'O filme é montado na ... certa, de acordo com o roteiro.',
-    alternativas: { A: 'ordem', B: 'lua', C: 'semana', D: 'medida' },
+    enunciado: 'Depois de prontos, os desenhos são ... com uma câmera especial.',
+    alternativas: { A: 'filmados', B: 'polidos', C: 'lavados', D: 'marcados' },
   },
   46: {
+    enunciado: 'O filme é montado na ... certa, de acordo com o roteiro.',
+    alternativas: { A: 'ordem', B: 'semana', C: 'lua', D: 'medida' },
+  },
+  47: {
     enunciado: 'O técnico de som junta as pistas de música, de diálogos e de ruídos, formando a ... sonora.',
     alternativas: { A: 'trilha', B: 'pizza', C: 'pilha', D: 'pasta' },
   },
-  47: {
+  48: {
     enunciado: 'Já com a banda sonora, o filme é levado ao ... para ser revelado.',
     alternativas: { A: 'hospital', B: 'laboratório', C: 'dentista', D: 'táxi' },
   },
-  48: {
+  49: {
     enunciado: 'São tiradas várias cópias do filme, para ... nos cinemas.',
     alternativas: { A: 'mergulhar', B: 'cozinhar', C: 'projetar', D: 'dizer' },
-  },
-  49: {
-    enunciado: 'O primeiro personagem famoso do desenho animado foi o Gato Félix, criado em 1919 por Pat Sullivan.',
-    alternativas: { A: 'Pat Sullivan', B: 'Walt Disney', C: 'Woody', D: 'Buzz' },
   },
   50: {
     enunciado: 'O camundongo ... foi criado por Walt Disney em 1926.',
@@ -236,7 +236,7 @@ const perguntas: Record<number, Pergunta> = {
   },
   58: {
     enunciado: 'A Bela e a Fera, de 1991, foi indicado para o ...',
-    alternativas: { A: 'Oscar', B: 'Heitor', C: 'Gaspar', D: 'William' },
+    alternativas: { A: 'Heitor', B: 'Gaspar', C: 'Oscar', D: 'William' },
   },
   59: {
     enunciado: 'A trilha sonora e a canção de Aladdin foram premiadas com o Oscar e o Globo de ...',
@@ -255,88 +255,88 @@ const perguntas: Record<number, Pergunta> = {
     alternativas: { A: 'Robin Hood', B: 'Branca de Neve', C: 'Aladdin', D: 'O Parque dos Dinossauros' },
   },
   63: {
-    enunciado: 'Se você gosta de brincar no computador, já deve saber o nome das partes numeradas.',
-    alternativas: { A: 'celular', B: 'teclado', C: 'fax', D: 'televisor' },
+    enunciado: 'Qual é o nome da parte número 63 do computador?',
+    alternativas: { A: 'celular', B: 'televisor', C: 'grill', D: 'monitor' },
   },
   64: {
-    enunciado: 'Se você gosta de brincar no computador, já deve saber o nome das partes numeradas.',
-    alternativas: { A: 'tablado', B: 'memória', C: 'mouse', D: 'cassete' },
+    enunciado: 'Qual é o nome da parte número 64 do computador?',
+    alternativas: { A: 'teclado', B: 'tablado', C: 'memória', D: 'impressora' },
   },
   65: {
-    enunciado: 'Se você gosta de brincar no computador, já deve saber o nome das partes numeradas.',
-    alternativas: { A: 'fax', B: 'chip', C: 'mouse', D: 'monitor' },
+    enunciado: 'Qual é o nome da parte número 65 do computador?',
+    alternativas: { A: 'fax', B: 'chip', C: 'mouse', D: 'byte' },
   },
   66: {
-    enunciado: 'Se você gosta de brincar no computador, já deve saber o nome das partes numeradas.',
-    alternativas: { A: 'CD-ROM', B: 'byte', C: 'impressora', D: 'vídeo' },
+    enunciado: 'Qual é o nome da parte número 66 do computador?',
+    alternativas: { A: 'CD-ROM', B: 'minipizza', C: 'cassete', D: 'vídeo' },
   },
   67: {
     enunciado: 'Este micro é um ...',
     alternativas: { A: 'multimídia', B: 'notebook', C: 'septimum', D: 'minisystem' },
   },
   68: {
-    enunciado: 'Em primeiro lugar, os artistas fazem desenhos das principais cenas do filme, que irão compor o storyboard.',
-    alternativas: { A: 'storyboard', B: 'personagens', C: 'rumo', D: 'plots' },
+    enunciado: 'Em primeiro lugar, os artistas fazem desenhos das principais cenas do filme, que irão compor o storyboard. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho A', B: 'Desenho B', C: 'Desenho C', D: 'Desenho D' },
   },
   69: {
-    enunciado: 'O storyboard é montado com as cenas na ordem certa, junto com as falas dos personagens.',
-    alternativas: { A: 'falas', B: 'som', C: 'voz', D: 'ruído' },
+    enunciado: 'O storyboard é montado com as cenas na ordem certa, junto com as falas dos personagens. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho J', B: 'Desenho A', C: 'Desenho F', D: 'Desenho C' },
   },
   70: {
-    enunciado: 'Quando as cenas e os diálogos estão na ordem, o diretor de arte escolhe a luz e o colorido de cada cena.',
-    alternativas: { A: 'luz', B: 'música', C: 'pistas', D: 'gravação' },
+    enunciado: 'Quando as cenas e os diálogos estão na ordem, o diretor de arte escolhe a luz e o colorido de cada cena. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho A', B: 'Desenho H', C: 'Desenho E', D: 'Desenho F' },
   },
   71: {
-    enunciado: 'Na quarta etapa, o computador cria modelos tridimensionais dos personagens e dos objetos.',
-    alternativas: { A: 'modelos', B: 'quadros', C: 'storyboard', D: 'planos' },
+    enunciado: 'Na quarta etapa, o computador cria modelos tridimensionais dos personagens e dos objetos. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho I', B: 'Desenho D', C: 'Desenho B', D: 'Desenho G' },
   },
   72: {
-    enunciado: 'Com os modelos prontos, o departamento de layout define os “movimentos de câmera” no computador.',
-    alternativas: { A: 'câmera', B: 'movimento', C: 'som', D: 'luz' },
+    enunciado: 'Com os modelos prontos, o departamento de layout define os “movimentos de câmera” — não com câmeras de verdade, mas no computador. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho B', B: 'Desenho C', C: 'Desenho H', D: 'Desenho I' },
   },
   73: {
-    enunciado: 'Em seguida, os micreiros “animam” os personagens e o computador preenche o caminho do movimento.',
-    alternativas: { A: 'movimento', B: 'som', C: 'luz', D: 'rumo' },
+    enunciado: 'Em seguida, os micreiros “animam” os personagens: eles indicam onde começa e termina cada movimento, e o computador preenche o caminho. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho G', B: 'Desenho A', C: 'Desenho D', D: 'Desenho H' },
   },
   74: {
-    enunciado: 'As cenas já animadas passam pelos “shaders”, programas que definem como serão as superfícies.',
-    alternativas: { A: 'tecido', B: 'luz', C: 'música', D: 'filme' },
+    enunciado: 'As cenas já animadas passam então pelos “shaders”. Shaders (sombreadores) são programas que definem como vão ser as superfícies: tecido, madeira, metal, pele, etc. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho B', B: 'Desenho I', C: 'Desenho A', D: 'Desenho D' },
   },
   75: {
-    enunciado: 'Depois de trabalhada nos shaders, cada cena é iluminada e o processo é chamado de renderização.',
-    alternativas: { A: 'renderização', B: 'storyboard', C: 'som', D: 'layout' },
+    enunciado: 'Depois de trabalhada nos shaders, cada cena é iluminada. Só que em vez da luz do sol e dos refletores, é tudo controlado pelo computador! Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho A', B: 'Desenho J', C: 'Desenho E', D: 'Desenho H' },
   },
   76: {
-    enunciado: 'A etapa final do processo é a gravação de todas as imagens em filme.',
-    alternativas: { A: 'gravação', B: 'renderização', C: 'layout', D: 'som' },
+    enunciado: 'Esta etapa é a que demora mais: chama-se “renderização”, e é a criação do colorido e dos detalhes das imagens. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho D', B: 'Desenho F', C: 'Desenho B', D: 'Desenho H' },
   },
   77: {
-    enunciado: 'Qual etapa do processo de animação por computador vem depois da renderização?',
-    alternativas: { A: 'gravação em filme', B: 'storyboard', C: 'layout', D: 'som' },
+    enunciado: 'A etapa final do processo é a gravação de todas as imagens em filme. Qual desenho mostra esta etapa?',
+    alternativas: { A: 'Desenho J', B: 'Desenho C', C: 'Desenho E', D: 'Desenho A' },
   },
   78: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 78 do quebra-cabeça?',
+    alternativas: { A: 'Peça A', B: 'Peça B', C: 'Peça C', D: 'Peça D' },
   },
   79: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 79 do quebra-cabeça?',
+    alternativas: { A: 'Peça D', B: 'Peça F', C: 'Peça A', D: 'Peça C' },
   },
   80: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 80 do quebra-cabeça?',
+    alternativas: { A: 'Peça A', B: 'Peça E', C: 'Peça B', D: 'Peça D' },
   },
   81: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 81 do quebra-cabeça?',
+    alternativas: { A: 'Peça C', B: 'Peça F', C: 'Peça A', D: 'Peça D' },
   },
   82: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 82 do quebra-cabeça?',
+    alternativas: { A: 'Peça F', B: 'Peça B', C: 'Peça A', D: 'Peça E' },
   },
   83: {
-    enunciado: 'Encontre a peça correspondente ao espaço numerado no quebra-cabeça.',
-    alternativas: { A: 'A', B: 'B', C: 'C', D: 'D' },
+    enunciado: 'Qual peça completa o espaço 83 do quebra-cabeça?',
+    alternativas: { A: 'Peça E', B: 'Peça A', C: 'Peça C', D: 'Peça F' },
   },
   84: {
     enunciado: 'Descubra a palavra que falta no texto sobre Toy Story.',
@@ -368,35 +368,35 @@ const perguntas: Record<number, Pergunta> = {
   },
   91: {
     enunciado: 'Faça a associação: CAUBÓI combina com ...',
-    alternativas: { A: 'Prepara comidas', B: 'Cuida dos doentes', C: 'Cuida do gado e doma cavalos', D: 'Dirige aviões' },
+    alternativas: { A: 'Prepara comidas', B: 'Cuida do gado e doma cavalos', C: 'Cuida dos doentes', D: 'Dirige aviões' },
   },
   92: {
     enunciado: 'Faça a associação: ASTRONAUTA combina com ...',
-    alternativas: { A: 'Conserta carros', B: 'Explora o espaço', C: 'Dirige aviões', D: 'Prepara comidas' },
+    alternativas: { A: 'Explora o espaço', B: 'Conserta carros', C: 'Prepara comidas', D: 'Cuida do gado e doma cavalos' },
   },
   93: {
     enunciado: 'Faça a associação: MECÂNICO combina com ...',
-    alternativas: { A: 'Conserta carros', B: 'Cuida dos doentes', C: 'Explora o espaço', D: 'Dirige aviões' },
+    alternativas: { A: 'Dirige aviões', B: 'Cuida dos doentes', C: 'Cuida do gado e doma cavalos', D: 'Conserta carros' },
   },
   94: {
     enunciado: 'Faça a associação: MÉDICO combina com ...',
-    alternativas: { A: 'Prepara comidas', B: 'Cuida dos doentes', C: 'Dirige aviões', D: 'Explora o espaço' },
+    alternativas: { A: 'Prepara comidas', B: 'Cuida dos doentes', C: 'Explora o espaço', D: 'Conserta carros' },
   },
   95: {
     enunciado: 'Faça a associação: PILOTO combina com ...',
-    alternativas: { A: 'Cuida do gado', B: 'Dirige aviões', C: 'Prepara comidas', D: 'Explora o espaço' },
+    alternativas: { A: 'Dirige aviões', B: 'Cuida dos doentes', C: 'Explora o espaço', D: 'Prepara comidas' },
   },
   96: {
     enunciado: 'Faça a associação: COZINHEIRO combina com ...',
-    alternativas: { A: 'Prepara comidas', B: 'Cuida dos doentes', C: 'Dirige aviões', D: 'Explora o espaço' },
+    alternativas: { A: 'Explora o espaço', B: 'Dirige aviões', C: 'Cuida dos doentes', D: 'Prepara comidas' },
   },
   97: {
     enunciado: 'A tenda está ... de Beth.',
-    alternativas: { A: 'depois', B: 'dentro', C: 'atrás', D: 'longe' },
+    alternativas: { A: 'depois', B: 'atrás', C: 'dentro', D: 'longe' },
   },
   98: {
     enunciado: 'Woody está ... da cama.',
-    alternativas: { A: 'em cima', B: 'na frente', C: 'debaixo', D: 'caindo' },
+    alternativas: { A: 'em cima', B: 'debaixo', C: 'na frente', D: 'caindo' },
   },
   99: {
     enunciado: 'Na cama de Andy há dois ...',
@@ -404,15 +404,15 @@ const perguntas: Record<number, Pergunta> = {
   },
   100: {
     enunciado: 'O soldadinho levanta o braço ...',
-    alternativas: { A: 'depois', B: 'dentro', C: 'esquerdo', D: 'direito' },
+    alternativas: { A: 'esquerdo', B: 'roxo', C: 'direito', D: 'enfaixado' },
   },
   101: {
     enunciado: 'Vejo ... soldadinhos verdes.',
-    alternativas: { A: 'muitos', B: 'alguns', C: 'vários', D: 'três' },
+    alternativas: { A: '7', B: '8', C: '6', D: '5' },
   },
   102: {
     enunciado: 'Buzz está todo ...',
-    alternativas: { A: 'contente', B: 'faminto', C: 'zangado', D: 'molhado' },
+    alternativas: { A: 'contente', B: 'zangado', C: 'faminto', D: 'molhado' },
   },
   103: {
     enunciado: 'Quantos foguetes aparecem na figura?',
@@ -504,11 +504,11 @@ const perguntas: Record<number, Pergunta> = {
   },
   125: {
     enunciado: 'Eles também usam um tanque de ...',
-    alternativas: { A: 'água', B: 'oxigênio', C: 'guerra', D: 'raspadinha' },
+    alternativas: { A: 'água', B: 'oxigênio', C: 'lavar roupa', D: 'guerra' },
   },
   126: {
     enunciado: 'Com ele, podem ... no espaço.',
-    alternativas: { A: 'falar', B: 'beber', C: 'lavar roupa', D: 'respirar' },
+    alternativas: { A: 'falar', B: 'beber', C: 'sorrir', D: 'respirar' },
   },
   127: {
     enunciado: 'Buzz acha que é um astronauta de ...',
@@ -563,48 +563,48 @@ const perguntas: Record<number, Pergunta> = {
     alternativas: { A: 'viajando', B: 'filmando', C: 'contentes', D: 'extintos' },
   },
   140: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
+    enunciado: 'Complete o diagrama: qual é o nome do dinossauro?',
     alternativas: { A: 'Tim', B: 'Sid', C: 'Rex', D: 'Roy' },
   },
   141: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
-    alternativas: { A: 'Soldado', B: 'Snoopy', C: 'Bidu', D: 'Dinky' },
+    enunciado: 'Complete o diagrama: qual é o nome da boneca pastora?',
+    alternativas: { A: 'Bonny', B: 'Beth', C: 'Julia', D: 'Jane' },
   },
   142: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
+    enunciado: 'Complete o diagrama: qual é o nome do astronauta?',
     alternativas: { A: 'Tom', B: 'Buzz', C: 'Byte', D: 'Mike' },
   },
   143: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
+    enunciado: 'Complete o diagrama: qual é o nome do caubói?',
     alternativas: { A: 'Buck', B: 'Woody', C: 'Blizz', D: 'Wonder' },
   },
   144: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
-    alternativas: { A: 'Bonny', B: 'Beth', C: 'Julia', D: 'Jane' },
+    enunciado: 'Complete o diagrama: qual é o nome do soldadinho verde?',
+    alternativas: { A: 'Soldado', B: 'Snoopy', C: 'Bidu', D: 'Dinky' },
   },
   145: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
+    enunciado: 'Complete o diagrama: qual é o título do filme?',
     alternativas: { A: 'Tom Toy', B: 'Tec Toy', C: 'Toy Story', D: 'Tom Boy' },
   },
   146: {
-    enunciado: 'Complete o diagrama com o nome dos personagens e o título do filme.',
+    enunciado: 'Complete o diagrama: qual é o nome do porquinho?',
     alternativas: { A: 'Porquinho', B: 'Piggy', C: 'Petunia', D: 'Priscila' },
   },
   147: {
-    enunciado: 'Ligue cada personagem com a palavra que combina com ele.',
-    alternativas: { A: 'pastora', B: 'nave espacial', C: 'moedas', D: 'mola' },
+    enunciado: 'Qual palavra combina com o Porquinho?',
+    alternativas: { A: 'pastora', B: 'nave espacial', C: 'mola', D: 'moedas' },
   },
   148: {
-    enunciado: 'Ligue cada personagem com a palavra que combina com ele.',
-    alternativas: { A: 'pastora', B: 'nave espacial', C: 'moedas', D: 'mola' },
+    enunciado: 'Qual palavra combina com a Beth?',
+    alternativas: { A: 'mola', B: 'moedas', C: 'nave espacial', D: 'pastora' },
   },
   149: {
-    enunciado: 'Ligue cada personagem com a palavra que combina com ele.',
+    enunciado: 'Qual palavra combina com o Slinky?',
     alternativas: { A: 'pastora', B: 'nave espacial', C: 'moedas', D: 'mola' },
   },
   150: {
-    enunciado: 'Ligue cada personagem com a palavra que combina com ele.',
-    alternativas: { A: 'pastora', B: 'nave espacial', C: 'moedas', D: 'mola' },
+    enunciado: 'Qual palavra combina com o Buzz?',
+    alternativas: { A: 'moedas', B: 'mola', C: 'nave espacial', D: 'pastora' },
   },
 }
 
