@@ -31,14 +31,14 @@ No Windows, o `mobile/iniciar.cmd` faz o mesmo usando um Node 22 portátil
 
 ## Onde fica cada coisa
 
-| Arquivo | O que tem |
-|---|---|
-| `mobile/src/game/jogo.ts` | Programas, gabarito e regras de pontuação |
-| `mobile/src/game/perguntas.ts` | Texto das 150 perguntas e alternativas |
-| `mobile/src/game/revista.ts` | Páginas da revista de cada programa |
-| `mobile/src/components/` | Telas e componentes (aparelho, revista, visualizador) |
-| `mobile/assets/revista/` | Páginas da revista em imagem |
-| `mobile/scripts/converter-revista.py` | Gera as imagens das páginas a partir do PDF |
+| Arquivo                               | O que tem                                             |
+| ------------------------------------- | ----------------------------------------------------- |
+| `mobile/src/game/jogo.ts`             | Programas, gabarito e regras de pontuação             |
+| `mobile/src/game/perguntas.ts`        | Texto das 150 perguntas e alternativas                |
+| `mobile/src/game/revista.ts`          | Páginas da revista de cada programa                   |
+| `mobile/src/components/`              | Telas e componentes (aparelho, revista, visualizador) |
+| `mobile/assets/revista/`              | Páginas da revista em imagem                          |
+| `mobile/scripts/converter-revista.py` | Gera as imagens das páginas a partir do PDF           |
 
 O PDF da revista não fica no repositório. Para gerar as páginas de novo, coloque o PDF em
 `mobile/` e rode `python scripts/converter-revista.py <arquivo.pdf>` (precisa de `pip install pymupdf`).
