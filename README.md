@@ -1,4 +1,4 @@
-# Pense Bem Toy Story
+# Pense Bem - Toy Story
 
 Versão para celular do Pense Bem, o brinquedo eletrônico de perguntas e respostas da Tec Toy,
 com o livro **Pense Bem Disney – Toy Story**. O app reproduz o aparelho (visor, botões coloridos
