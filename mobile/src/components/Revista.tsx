@@ -1,9 +1,14 @@
-import { useEffect, useRef } from 'react'
-import { Animated, Pressable, StyleSheet, Text, View } from 'react-native'
+import { useEffect, useRef, useState } from 'react'
+import { useEventListener } from 'expo'
+import { useVideoPlayer, VideoView } from 'expo-video'
+import type { VideoPlayer } from 'expo-video'
+import { Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { PONTUACAO_MAXIMA, RESPOSTAS, calcularEstrelas, listaProgramas } from '../game/jogo'
 import type { Jogo } from '../game/jogo'
 import type { Pergunta } from '../game/perguntas'
 import { contorno, cores, coresBotao, driverNativo, sombraDura } from '../tema'
+
+const videoPontuacaoBaixa = require('../../assets/videos/woodyRindo.mp4')
 
 type Progresso = { atual: number; total: number; respondidas: number }
 
@@ -15,6 +20,13 @@ type RevistaProps = {
 }
 
 function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps) {
+  // O player é criado já na abertura da revista para o vídeo carregar durante o jogo,
+  // e não só quando a tela de resultado aparece
+  const playerPontuacaoBaixa = useVideoPlayer(videoPontuacaoBaixa, (p) => {
+    p.loop = true
+    // Navegadores só deixam tocar sozinho se estiver no mudo (o vídeo não tem áudio)
+    p.muted = true
+  })
   // "Vira a página" quando muda a pergunta ou o estado do jogo
   const chavePagina = `${jogo.programa}-${jogo.pergunta}-${jogo.finalizado}`
   const entrada = useRef(new Animated.Value(1)).current
@@ -36,7 +48,17 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
   return (
     <View style={styles.revista}>
       <View style={styles.manchete}>
-        <Text style={styles.textoManchete}>REVISTA</Text>
+        <View style={styles.mancheteEsquerda}>
+          <Text style={styles.textoManchete}>REVISTA</Text>
+          <View style={styles.seloLogo}>
+            <Image
+              source={require('../../assets/toystory.png')}
+              style={styles.logo}
+              resizeMode="contain"
+              accessibilityLabel="Toy Story"
+            />
+          </View>
+        </View>
         <Text style={styles.textoMancheteDireita} numberOfLines={1}>
           {titulo}
         </Text>
@@ -47,8 +69,14 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
         {jogo.programa !== null && !jogo.finalizado && (
           <PaginaPergunta jogo={jogo} pergunta={pergunta} progresso={progresso} />
         )}
-        {jogo.finalizado && <Resultado jogo={jogo} />}
+        {jogo.finalizado && <Resultado jogo={jogo} player={playerPontuacaoBaixa} />}
       </Animated.View>
+
+      {/* No web o arquivo só é baixado quando existe um <video> na tela: este fica
+          invisível durante o jogo só para adiantar o carregamento */}
+      {jogo.programa !== null && !jogo.finalizado && (
+        <VideoView player={playerPontuacaoBaixa} style={styles.preCarregamento} nativeControls={false} />
+      )}
     </View>
   )
 }
@@ -57,8 +85,7 @@ function Capa({ onEscolher }: { onEscolher: (codigo: string) => void }) {
   return (
     <View>
       <Text style={styles.instrucao}>
-        Toque num programa ou digite o código no aparelho. Leia a pergunta e responda com os botões
-        coloridos.
+        Toque num programa ou digite o código no aparelho e responda com os botões coloridos.
       </Text>
       <View style={styles.listaProgramas}>
         {listaProgramas.map(({ codigo, primeira, ultima }, i) => {
@@ -74,10 +101,9 @@ function Capa({ onEscolher }: { onEscolher: (codigo: string) => void }) {
               <View style={[styles.programaCodigo, { backgroundColor: cor.face }]}>
                 <Text style={[styles.textoCodigo, { color: cor.letra }]}>{codigo}</Text>
               </View>
-              <Text style={styles.textoPrograma}>
-                Perguntas {primeira} a {ultima}
+              <Text style={styles.textoPrograma} numberOfLines={1}>
+                Perg. {primeira}–{ultima}
               </Text>
-              <Text style={styles.seta}>›</Text>
             </Pressable>
           )
         })}
@@ -142,8 +168,40 @@ function PaginaPergunta({
 
 const MENSAGENS = ['Vamos tentar de novo?', 'Bom começo!', 'Muito bem!', 'Incrível!']
 
-function Resultado({ jogo }: { jogo: Jogo }) {
+// Até 1 estrela (menos de 50% dos pontos) conta como pontuação baixa
+const ESTRELAS_PONTUACAO_BAIXA = 1
+
+function VideoPontuacaoBaixa({ player }: { player: VideoPlayer }) {
+  // Esconde o vídeo até o primeiro quadro estar pronto, para não aparecer uma caixa vazia
+  const [pronto, setPronto] = useState(false)
+
+  // O play() precisa vir depois que o VideoView montou: no web, chamar dentro do
+  // setup do useVideoPlayer não tem efeito porque ainda não existe <video> na tela
+  useEffect(() => {
+    player.play()
+  }, [player])
+
+  useEventListener(player, 'statusChange', ({ status }) => {
+    if (status === 'readyToPlay' && !player.playing) player.play()
+  })
+
+  return (
+    <View style={[styles.moldeVideo, !pronto && styles.escondido]}>
+      <VideoView
+        player={player}
+        onFirstFrameRender={() => setPronto(true)}
+        style={styles.video}
+        contentFit="cover"
+        nativeControls={false}
+        accessibilityLabel="Vídeo de pontuação baixa"
+      />
+    </View>
+  )
+}
+
+function Resultado({ jogo, player }: { jogo: Jogo; player: VideoPlayer }) {
   const estrelas = calcularEstrelas(jogo.pontuacao)
+  const pontuacaoBaixa = estrelas <= ESTRELAS_PONTUACAO_BAIXA
 
   return (
     <View style={styles.resultado}>
@@ -154,12 +212,18 @@ function Resultado({ jogo }: { jogo: Jogo }) {
           </Text>
         ))}
       </View>
-      <Text style={styles.mensagem}>{MENSAGENS[estrelas]}</Text>
+      {pontuacaoBaixa ? (
+        <VideoPontuacaoBaixa player={player} />
+      ) : (
+        <Text style={styles.mensagem}>{MENSAGENS[estrelas]}</Text>
+      )}
       <Text style={styles.pontos}>
         {jogo.pontuacao}
         <Text style={styles.pontosMaximo}> / {PONTUACAO_MAXIMA} pontos</Text>
       </Text>
-      <Text style={styles.detalhe}>{jogo.acertosPrimeira} acertos de primeira</Text>
+      {!pontuacaoBaixa && (
+        <Text style={styles.detalhe}>{jogo.acertosPrimeira} acertos de primeira</Text>
+      )}
       <Text style={styles.dica}>Aperte RESET para escolher outro programa.</Text>
     </View>
   )
@@ -185,6 +249,23 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 14,
   },
+  mancheteEsquerda: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  seloLogo: {
+    backgroundColor: cores.branco,
+    borderWidth: 2,
+    borderColor: cores.tinta,
+    borderRadius: 8,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+  },
+  logo: {
+    width: 40,
+    height: 30,
+  },
   textoManchete: {
     color: cores.branco,
     fontSize: 18,
@@ -206,21 +287,25 @@ const styles = StyleSheet.create({
   // Capa
   instrucao: {
     color: cores.textoPapel,
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 14,
+    lineHeight: 19,
   },
   listaProgramas: {
-    marginTop: 12,
-    gap: 8,
+    marginTop: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    rowGap: 6,
   },
   programa: {
+    width: '49%',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
     borderWidth: 2,
     borderColor: cores.tinta,
-    borderRadius: 12,
-    padding: 6,
+    borderRadius: 10,
+    padding: 4,
     backgroundColor: cores.branco,
   },
   programaPressionado: {
@@ -230,25 +315,19 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: cores.tinta,
     borderRadius: 8,
-    paddingVertical: 4,
-    paddingHorizontal: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
   },
   textoCodigo: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '900',
     letterSpacing: 1,
   },
   textoPrograma: {
     flex: 1,
     color: cores.textoPapel,
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '600',
-  },
-  seta: {
-    color: cores.textoSuave,
-    fontSize: 24,
-    fontWeight: 'bold',
-    paddingRight: 6,
   },
 
   // Pergunta
@@ -306,12 +385,16 @@ const styles = StyleSheet.create({
   },
   alternativas: {
     marginTop: 12,
-    gap: 8,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    rowGap: 8,
   },
   alternativa: {
+    width: '48%',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 8,
     paddingBottom: 8,
     borderBottomWidth: 1,
     borderBottomColor: cores.papelLinha,
@@ -335,7 +418,7 @@ const styles = StyleSheet.create({
   textoAlternativa: {
     flex: 1,
     color: cores.textoPapel,
-    fontSize: 16,
+    fontSize: 15,
   },
   riscado: {
     textDecorationLine: 'line-through',
@@ -361,6 +444,30 @@ const styles = StyleSheet.create({
   },
   estrelaVazia: {
     color: cores.papelLinha,
+  },
+  moldeVideo: {
+    marginTop: 8,
+    width: '100%',
+    aspectRatio: 16 / 9,
+    borderRadius: 12,
+    borderWidth: contorno,
+    borderColor: cores.tinta,
+    overflow: 'hidden',
+    backgroundColor: cores.tinta,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  escondido: {
+    opacity: 0,
+  },
+  preCarregamento: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    opacity: 0,
+    pointerEvents: 'none',
   },
   mensagem: {
     marginTop: 4,
