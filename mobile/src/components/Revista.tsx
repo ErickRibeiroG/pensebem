@@ -88,6 +88,16 @@ function Revista({ jogo, pergunta, progresso, onEscolherPrograma }: RevistaProps
         <VideoView player={playerPontuacaoBaixa} style={styles.preCarregamento} nativeControls={false} />
       )}
 
+      {/* Baixa as páginas do programa assim que ele é escolhido, para o botão "Revista"
+          abrir sem espera. As imagens ficam invisíveis e o cache é reaproveitado depois */}
+      {jogo.programa !== null && !jogo.finalizado && (
+        <View style={styles.preCarregamento}>
+          {paginas.map((p) => (
+            <Image key={p.numero} source={p.fonte} style={styles.paginaPreCarregada} />
+          ))}
+        </View>
+      )}
+
       {/* key: cada programa abre na primeira página dele */}
       {jogo.programa !== null && paginas.length > 0 && (
         <ConsultarRevista
@@ -167,7 +177,7 @@ function PaginaPergunta({
             accessibilityLabel="Consultar a revista"
             style={({ pressed }) => [styles.botaoRevista, pressed && styles.botaoRevistaPressionado]}
           >
-            <Text style={styles.textoBotaoRevista}>Revista</Text>
+            <Text style={styles.textoBotaoRevista}>Ver revista</Text>
           </Pressable>
         )}
       </View>
@@ -525,6 +535,10 @@ const styles = StyleSheet.create({
     height: 1,
     opacity: 0,
     pointerEvents: 'none',
+  },
+  paginaPreCarregada: {
+    width: 1,
+    height: 1,
   },
   mensagem: {
     marginTop: 4,
